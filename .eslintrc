@@ -1,0 +1,16 @@
+{
+  "extends": ["airbnb", "airbnb/hooks", "prettier"],
+  "rules": {
+    "no-plusplus": "off",
+    "react/require-default-props": "off",
+    "react/prop-types": "off",
+    "newline-after-var": ["error", "always"],
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "no-param-reassign": "off",
+    "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
+    "react/jsx-filename-extension": "off",
+    "no-use-before-define": "off"
+  }
+}

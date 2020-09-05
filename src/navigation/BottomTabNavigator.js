@@ -1,5 +1,4 @@
 import React from 'react';
-import { Home } from '../screens/Home';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeTabNavigator } from './HomeTabNavigator';
 import { Calendar } from '../screens/Calendar';
