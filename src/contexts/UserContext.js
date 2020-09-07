@@ -5,10 +5,10 @@ export const UserContext = React.createContext({ user: null });
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = React.useState(null);
-  const { firebase } = useFirebase();
+  const { auth } = useFirebase();
 
   React.useEffect(() => {
-    firebase.auth().onAuthStateChanged((newUser) => setUser(newUser));
+    auth.onAuthStateChanged((newUser) => setUser(newUser));
   });
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
