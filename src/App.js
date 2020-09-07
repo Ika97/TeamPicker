@@ -1,12 +1,15 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import Navigation from './navigation';
+import UserProvider from './contexts/UserContext';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Navigation />
-    </View>
+    <UserProvider>
+      <SafeAreaView style={styles.container}>
+        <Navigation />
+      </SafeAreaView>
+    </UserProvider>
   );
 }
 
