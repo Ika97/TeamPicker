@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     width: 250,
     height: 50,
     resizeMode: 'contain',
-    marginBottom: 30,
+    marginBottom: 10,
   },
   textInput: {
     width: '100%',
@@ -65,10 +65,17 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 3.84,
   },
   socialButtonIcon: {
-    fontSize: 20,
-    color: '#0070ED',
+    // fontSize: 20,
+    // color: '#0070ED',
   },
   bottomContent: {
     flex: 1,
