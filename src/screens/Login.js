@@ -1,11 +1,15 @@
 import React from 'react';
 import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
 import { StackActions, useNavigation } from '@react-navigation/native';
-import { FontAwesome } from '@expo/vector-icons';
+import { SvgUri } from 'react-native-svg';
 import { styles } from './Login.style';
-import logo from '../../assets/TeamPicker.png';
+import logo from '../../assets/TeamPicker.svg';
+import google from '../../assets/google.svg';
+import facebook from '../../assets/facebook.svg';
 
 const logoUri = Image.resolveAssetSource(logo).uri;
+const googleLogoUri = Image.resolveAssetSource(google).uri;
+const facebookLogoUri = Image.resolveAssetSource(facebook).uri;
 
 export const Login = () => {
   const [username, setUsername] = React.useState('');
@@ -18,6 +22,7 @@ export const Login = () => {
 
   return (
     <View style={styles.container}>
+      <SvgUri style={styles.logo} uri={logoUri} />
       <Image source={{ uri: logoUri }} style={styles.logo} />
       <TextInput
         placeholder="Username"
@@ -35,7 +40,7 @@ export const Login = () => {
       />
       <View style={styles.forgotPasswordContainer}>
         <TouchableOpacity>
-          <Text stlye={styles.forgotPasswordText}>Forgot a password?</Text>
+          <Text style={styles.forgotPasswordText}>Forgot a password?</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity
@@ -47,11 +52,10 @@ export const Login = () => {
       <Text style={styles.socialSignInText}>Or Sign In using</Text>
       <View style={styles.socialButtonsContainer}>
         <TouchableOpacity style={styles.socialButton}>
-          <FontAwesome name="facebook" style={styles.socialButtonIcon} />
+          <SvgUri width="100%" uri={facebookLogoUri} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.socialButton}>
-          {/* TODO: replace with colorful Google icon */}
-          <FontAwesome name="google" style={styles.socialButtonIcon} />
+          <SvgUri width="100%" uri={googleLogoUri} />
         </TouchableOpacity>
       </View>
       <View style={styles.bottomContent}>
