@@ -1,8 +1,15 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
 import { StackActions, useNavigation } from '@react-navigation/native';
+import { FontAwesome } from '@expo/vector-icons';
+import { styles } from './Login.style';
+import logo from '../../assets/TeamPicker.png';
+
+const logoUri = Image.resolveAssetSource(logo).uri;
 
 export const Login = () => {
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const navigation = useNavigation();
 
   const handleNavigateClick = () => {
@@ -10,9 +17,51 @@ export const Login = () => {
   };
 
   return (
-    <View>
-      <Text style={{ marginBottom: 20 }}>Login</Text>
-      <Button onPress={handleNavigateClick} title="Navigate to Root" />
+    <View style={styles.container}>
+      <Image source={{ uri: logoUri }} style={styles.logo} />
+      <TextInput
+        placeholder="Username"
+        keyboardType="email-address"
+        style={styles.textInput}
+        onChangeText={(value) => setUsername(value)}
+        value={username}
+      />
+      <TextInput
+        placeholder="Password"
+        secureTextEntry
+        style={{ ...styles.textInput, marginTop: 15 }}
+        onChangeText={(value) => setPassword(value)}
+        value={password}
+      />
+      <View style={styles.forgotPasswordContainer}>
+        <TouchableOpacity>
+          <Text stlye={styles.forgotPasswordText}>Forgot a password?</Text>
+        </TouchableOpacity>
+      </View>
+      <TouchableOpacity
+        style={styles.signInButton}
+        onPress={handleNavigateClick}
+      >
+        <Text style={styles.signInButtonText}>SIGN IN</Text>
+      </TouchableOpacity>
+      <Text style={styles.socialSignInText}>Or Sign In using</Text>
+      <View style={styles.socialButtonsContainer}>
+        <TouchableOpacity style={styles.socialButton}>
+          <FontAwesome name="facebook" style={styles.socialButtonIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialButton}>
+          {/* TODO: replace with colorful Google icon */}
+          <FontAwesome name="google" style={styles.socialButtonIcon} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.bottomContent}>
+        <View style={styles.signUpContainer}>
+          <Text style={styles.signUpText}>Do not have an account?</Text>
+          <TouchableOpacity style={styles.signUpButton}>
+            <Text style={styles.signUpButtonText}>Create new</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };
