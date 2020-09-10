@@ -3,7 +3,7 @@ import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { SvgUri } from 'react-native-svg';
-import { styles } from './Login.style';
+import { styles } from './SignIn.style';
 import logo from '../../assets/TeamPicker.svg';
 
 const logoUri = Image.resolveAssetSource(logo).uri;
@@ -22,7 +22,7 @@ export const SignUp = () => {
   };
 
   const loginNavigateClick = () => {
-    navigation.dispatch(StackActions.replace('Login'));
+    navigation.dispatch(StackActions.replace('SignIn'));
   };
 
   return (

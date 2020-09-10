@@ -3,7 +3,7 @@ import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { SvgUri } from 'react-native-svg';
-import { styles } from './Login.style';
+import { styles } from './SignIn.style';
 import logo from '../../assets/TeamPicker.svg';
 import google from '../../assets/google.svg';
 import facebook from '../../assets/facebook.svg';
@@ -12,7 +12,7 @@ const logoUri = Image.resolveAssetSource(logo).uri;
 const googleLogoUri = Image.resolveAssetSource(google).uri;
 const facebookLogoUri = Image.resolveAssetSource(facebook).uri;
 
-export const Login = () => {
+export const SignIn = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [visible, setVisibility] = React.useState(false);
