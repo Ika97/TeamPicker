@@ -17,6 +17,7 @@ export const Login = () => {
   const [password, setPassword] = React.useState('');
   const [visible, setVisibility] = React.useState(false);
   const navigation = useNavigation();
+  const icon = !visible ? 'eye-slash' : 'eye';
 
   const handleNavigateClick = () => {
     navigation.dispatch(StackActions.replace('Root'));
@@ -25,8 +26,6 @@ export const Login = () => {
   const signUpNavigateClick = () => {
     navigation.dispatch(StackActions.replace('SignUp'));
   };
-
-  const icon = !visible ? 'eye-slash' : 'eye';
 
   return (
     <View style={styles.container}>
