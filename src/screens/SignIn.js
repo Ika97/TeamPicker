@@ -25,6 +25,10 @@ export const SignIn = () => {
     }
   };
 
+  const signUpNavigateClick = () => {
+    navigation.dispatch(StackActions.replace('SignUp'));
+  };
+
   return (
     <View style={styles.container}>
       <SvgUri style={styles.logo} uri={logoUri} />
@@ -67,7 +71,9 @@ export const SignIn = () => {
         <View style={styles.signUpContainer}>
           <Text style={styles.signUpText}>Do not have an account?</Text>
           <TouchableOpacity style={styles.signUpButton}>
-            <Text style={styles.signUpButtonText}>Create new</Text>
+            <Text style={styles.signUpButtonText} onPress={signUpNavigateClick}>
+              Create new
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

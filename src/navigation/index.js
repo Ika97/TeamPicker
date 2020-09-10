@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import { BottomTabNavigator } from './BottomTabNavigator';
 import { SignIn } from '../screens/SignIn';
+import { SignUp } from '../screens/SignUp';
 import { UserContext } from '../contexts/UserContext';
 
 const Stack = createStackNavigator();
@@ -38,7 +39,8 @@ function RootNavigator() {
       {user ? (
         <Stack.Screen name="Root" component={BottomTabNavigator} />
       ) : (
-        <Stack.Screen name="Authentication" component={SignIn} />
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
       )}
     </Stack.Navigator>
   );
