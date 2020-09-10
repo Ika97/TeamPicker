@@ -39,8 +39,10 @@ function RootNavigator() {
       {user ? (
         <Stack.Screen name="Root" component={BottomTabNavigator} />
       ) : (
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="SignUp" component={SignUp} />
+        <>
+          <Stack.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+        </>
       )}
     </Stack.Navigator>
   );

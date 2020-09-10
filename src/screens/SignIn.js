@@ -1,5 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
+import { StackActions, useNavigation } from '@react-navigation/native';
+import { FontAwesome } from '@expo/vector-icons';
 import { SvgUri } from 'react-native-svg';
 import { styles } from './SignIn.style';
 import logo from '../../assets/TeamPicker.svg';
@@ -14,6 +16,8 @@ const facebookLogoUri = Image.resolveAssetSource(facebook).uri;
 export const SignIn = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isVisible, setIsVisible] = React.useState(false);
+  const navigation = useNavigation();
 
   const { loginWithFacebook } = useAuthentication();
 
@@ -29,6 +33,8 @@ export const SignIn = () => {
     navigation.dispatch(StackActions.replace('SignUp'));
   };
 
+  const icon = !isVisible ? 'eye-slash' : 'eye';
+
   return (
     <View style={styles.container}>
       <SvgUri style={styles.logo} uri={logoUri} />
@@ -40,13 +46,22 @@ export const SignIn = () => {
         onChangeText={(value) => setUsername(value)}
         value={username}
       />
-      <TextInput
-        placeholder="Password"
-        secureTextEntry
-        style={{ ...styles.textInput, marginTop: 15 }}
-        onChangeText={(value) => setPassword(value)}
-        value={password}
-      />
+      <View style={{ ...styles.passwordContainer, marginTop: 15 }}>
+        <TextInput
+          placeholder="Password"
+          secureTextEntry={!setIsVisible()}
+          style={styles.passwordInput}
+          onChangeText={(value) => setPassword(value)}
+          value={password}
+        />
+        <TouchableOpacity
+          style={styles.icons}
+          onPress={() => setIsVisible(!isVisible)}
+        >
+          <FontAwesome style={{ ...styles.icon }} name={icon} color="#9e9e9e" />
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.forgotPasswordContainer}>
         <TouchableOpacity>
           <Text style={styles.forgotPasswordText}>Forgot a password?</Text>
