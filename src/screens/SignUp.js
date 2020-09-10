@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
 import { StackActions, useNavigation } from '@react-navigation/native';
+import { FontAwesome } from '@expo/vector-icons';
 import { SvgUri } from 'react-native-svg';
 import { styles } from './Login.style';
 import logo from '../../assets/TeamPicker.svg';
@@ -12,7 +13,9 @@ export const SignUp = () => {
   const [useremail, setUseremail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [repeatPassword, setRepeatPassword] = React.useState('');
+  const [visible, setVisibility] = React.useState(false);
   const navigation = useNavigation();
+  const icon = !visible ? 'eye-slash' : 'eye';
 
   const handleNavigateClick = () => {
     navigation.dispatch(StackActions.replace('Root'));
@@ -40,20 +43,37 @@ export const SignUp = () => {
         onChangeText={(value) => setUseremail(value)}
         value={useremail}
       />
-      <TextInput
-        placeholder="Password"
-        secureTextEntry
-        style={{ ...styles.textInput, marginTop: 15 }}
-        onChangeText={(value) => setPassword(value)}
-        value={password}
-      />
-      <TextInput
-        placeholder="Repeat Password"
-        secureTextEntry
-        style={{ ...styles.textInput, marginTop: 15 }}
-        onChangeText={(value) => setRepeatPassword(value)}
-        value={repeatPassword}
-      />
+      <View style={{ ...styles.passwordContainer, marginTop: 15 }}>
+        <TextInput
+          placeholder="Password"
+          secureTextEntry={!visible}
+          style={styles.passwordInput}
+          onChangeText={(value) => setPassword(value)}
+          value={password}
+        />
+        <TouchableOpacity
+          style={{ ...styles.icons }}
+          onPress={() => setVisibility(!visible)}
+        >
+          <FontAwesome style={{ ...styles.icon }} name={icon} color="#9e9e9e" />
+        </TouchableOpacity>
+      </View>
+      <View style={{ ...styles.passwordContainer, marginTop: 15 }}>
+        <TextInput
+          placeholder="Repeat Password"
+          secureTextEntry={!visible}
+          style={styles.passwordInput}
+          onChangeText={(value) => setRepeatPassword(value)}
+          value={repeatPassword}
+        />
+        <TouchableOpacity
+          style={{ ...styles.icons }}
+          onPress={() => setVisibility(!visible)}
+        >
+          <FontAwesome style={{ ...styles.icon }} name={icon} color="#9e9e9e" />
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity
         style={styles.signInButton}
         onPress={handleNavigateClick}
