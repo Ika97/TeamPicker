@@ -4,24 +4,22 @@ import { StackActions, useNavigation } from '@react-navigation/native';
 import { SvgUri } from 'react-native-svg';
 import { styles } from './Login.style';
 import logo from '../../assets/TeamPicker.svg';
-import google from '../../assets/google.svg';
-import facebook from '../../assets/facebook.svg';
 
 const logoUri = Image.resolveAssetSource(logo).uri;
-const googleLogoUri = Image.resolveAssetSource(google).uri;
-const facebookLogoUri = Image.resolveAssetSource(facebook).uri;
 
-export const Login = () => {
+export const SignUp = () => {
   const [username, setUsername] = React.useState('');
+  const [useremail, setUseremail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [repeatPassword, setRepeatPassword] = React.useState('');
   const navigation = useNavigation();
 
   const handleNavigateClick = () => {
     navigation.dispatch(StackActions.replace('Root'));
   };
 
-  const signUpNavigateClick = () => {
-    navigation.dispatch(StackActions.replace('SignUp'));
+  const loginNavigateClick = () => {
+    navigation.dispatch(StackActions.replace('Login'));
   };
 
   return (
@@ -30,10 +28,17 @@ export const Login = () => {
       <Image source={{ uri: logoUri }} style={styles.logo} />
       <TextInput
         placeholder="Username"
-        keyboardType="email-address"
+        autoCorrect="false"
         style={styles.textInput}
         onChangeText={(value) => setUsername(value)}
         value={username}
+      />
+      <TextInput
+        placeholder="Email"
+        keyboardType="email-address"
+        style={{ ...styles.textInput, marginTop: 15 }}
+        onChangeText={(value) => setUseremail(value)}
+        value={useremail}
       />
       <TextInput
         placeholder="Password"
@@ -42,32 +47,26 @@ export const Login = () => {
         onChangeText={(value) => setPassword(value)}
         value={password}
       />
-      <View style={styles.forgotPasswordContainer}>
-        <TouchableOpacity>
-          <Text style={styles.forgotPasswordText}>Forgot a password?</Text>
-        </TouchableOpacity>
-      </View>
+      <TextInput
+        placeholder="Repeat Password"
+        secureTextEntry
+        style={{ ...styles.textInput, marginTop: 15 }}
+        onChangeText={(value) => setRepeatPassword(value)}
+        value={repeatPassword}
+      />
       <TouchableOpacity
         style={styles.signInButton}
         onPress={handleNavigateClick}
       >
-        <Text style={styles.signInButtonText}>SIGN IN</Text>
+        <Text style={styles.signInButtonText}>SIGN UP</Text>
       </TouchableOpacity>
-      <Text style={styles.socialSignInText}>Or Sign In using</Text>
-      <View style={styles.socialButtonsContainer}>
-        <TouchableOpacity style={styles.socialButton}>
-          <SvgUri width="100%" uri={facebookLogoUri} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialButton}>
-          <SvgUri width="100%" uri={googleLogoUri} />
-        </TouchableOpacity>
-      </View>
+
       <View style={styles.bottomContent}>
         <View style={styles.signUpContainer}>
-          <Text style={styles.signUpText}>Do not have an account?</Text>
+          <Text style={styles.signUpText}>Already have an account?</Text>
           <TouchableOpacity style={styles.signUpButton}>
-            <Text style={styles.signUpButtonText} onPress={signUpNavigateClick}>
-              Create new
+            <Text style={styles.signUpButtonText} onPress={loginNavigateClick}>
+              Sign In
             </Text>
           </TouchableOpacity>
         </View>
