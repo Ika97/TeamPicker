@@ -1,23 +1,28 @@
 import React from 'react';
 import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
-import { StackActions, useNavigation } from '@react-navigation/native';
 import { SvgUri } from 'react-native-svg';
-import { styles } from './Login.style';
+import { styles } from './SignIn.style';
 import logo from '../../assets/TeamPicker.svg';
 import google from '../../assets/google.svg';
 import facebook from '../../assets/facebook.svg';
+import { useAuthentication } from '../hooks/useAuthentication';
 
 const logoUri = Image.resolveAssetSource(logo).uri;
 const googleLogoUri = Image.resolveAssetSource(google).uri;
 const facebookLogoUri = Image.resolveAssetSource(facebook).uri;
 
-export const Login = () => {
+export const SignIn = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const navigation = useNavigation();
 
-  const handleNavigateClick = () => {
-    navigation.dispatch(StackActions.replace('Root'));
+  const { loginWithFacebook } = useAuthentication();
+
+  const signInWithFacebook = async () => {
+    try {
+      await loginWithFacebook();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -43,15 +48,15 @@ export const Login = () => {
           <Text style={styles.forgotPasswordText}>Forgot a password?</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.signInButton}
-        onPress={handleNavigateClick}
-      >
+      <TouchableOpacity style={styles.signInButton} onPress={() => {}}>
         <Text style={styles.signInButtonText}>SIGN IN</Text>
       </TouchableOpacity>
       <Text style={styles.socialSignInText}>Or Sign In using</Text>
       <View style={styles.socialButtonsContainer}>
-        <TouchableOpacity style={styles.socialButton}>
+        <TouchableOpacity
+          style={styles.socialButton}
+          onPress={signInWithFacebook}
+        >
           <SvgUri width="100%" uri={facebookLogoUri} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.socialButton}>
