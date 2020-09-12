@@ -18,6 +18,7 @@ export const SignIn = () => {
   const [password, setPassword] = React.useState('');
   const [isVisible, setIsVisible] = React.useState(false);
   const navigation = useNavigation();
+  const icon = !isVisible ? 'eye-slash' : 'eye';
 
   const { loginWithFacebook } = useAuthentication();
 
@@ -33,8 +34,6 @@ export const SignIn = () => {
     navigation.dispatch(StackActions.replace('SignUp'));
   };
 
-  const icon = !isVisible ? 'eye-slash' : 'eye';
-
   return (
     <View style={styles.container}>
       <SvgUri style={styles.logo} uri={logoUri} />
@@ -49,7 +48,7 @@ export const SignIn = () => {
       <View style={{ ...styles.passwordContainer, marginTop: 15 }}>
         <TextInput
           placeholder="Password"
-          secureTextEntry={!setIsVisible()}
+          secureTextEntry={!isVisible}
           style={styles.passwordInput}
           onChangeText={(value) => setPassword(value)}
           value={password}
