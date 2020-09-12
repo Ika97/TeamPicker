@@ -22,7 +22,7 @@ export const SignUp = () => {
   };
 
   const loginNavigateClick = () => {
-    navigation.dispatch(StackActions.replace('SignIn'));
+    navigation.dispatch(StackActions.pop());
   };
 
   return (
