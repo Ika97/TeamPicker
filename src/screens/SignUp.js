@@ -10,12 +10,12 @@ const logoUri = Image.resolveAssetSource(logo).uri;
 
 export const SignUp = () => {
   const [username, setUsername] = React.useState('');
-  const [useremail, setUseremail] = React.useState('');
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [repeatPassword, setRepeatPassword] = React.useState('');
-  const [visible, setVisibility] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(false);
   const navigation = useNavigation();
-  const icon = !visible ? 'eye-slash' : 'eye';
+  const icon = !isVisible ? 'eye-slash' : 'eye';
 
   const handleNavigateClick = () => {
     navigation.dispatch(StackActions.replace('Root'));
@@ -31,7 +31,6 @@ export const SignUp = () => {
       <Image source={{ uri: logoUri }} style={styles.logo} />
       <TextInput
         placeholder="Username"
-        autoCorrect="false"
         style={styles.textInput}
         onChangeText={(value) => setUsername(value)}
         value={username}
@@ -40,20 +39,20 @@ export const SignUp = () => {
         placeholder="Email"
         keyboardType="email-address"
         style={{ ...styles.textInput, marginTop: 15 }}
-        onChangeText={(value) => setUseremail(value)}
-        value={useremail}
+        onChangeText={(value) => setEmail(value)}
+        value={email}
       />
       <View style={{ ...styles.passwordContainer, marginTop: 15 }}>
         <TextInput
           placeholder="Password"
-          secureTextEntry={!visible}
+          secureTextEntry={!isVisible}
           style={styles.passwordInput}
           onChangeText={(value) => setPassword(value)}
           value={password}
         />
         <TouchableOpacity
           style={{ ...styles.icons }}
-          onPress={() => setVisibility(!visible)}
+          onPress={() => setIsVisible(!isVisible)}
         >
           <FontAwesome style={{ ...styles.icon }} name={icon} color="#9e9e9e" />
         </TouchableOpacity>
@@ -61,14 +60,14 @@ export const SignUp = () => {
       <View style={{ ...styles.passwordContainer, marginTop: 15 }}>
         <TextInput
           placeholder="Repeat Password"
-          secureTextEntry={!visible}
+          secureTextEntry={!isVisible}
           style={styles.passwordInput}
           onChangeText={(value) => setRepeatPassword(value)}
           value={repeatPassword}
         />
         <TouchableOpacity
           style={{ ...styles.icons }}
-          onPress={() => setVisibility(!visible)}
+          onPress={() => setIsVisible(!isVisible)}
         >
           <FontAwesome style={{ ...styles.icon }} name={icon} color="#9e9e9e" />
         </TouchableOpacity>
